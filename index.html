@@ -245,6 +245,10 @@
                         <i class="fas fa-laptop"></i>
                         Software
                     </div>
+                    <div class="filter-btn" onclick="setFiletype('apk|ipa', 'Mobile Apps', 'mobile', 'mobile')">
+                        <i class="fas fa-mobile-alt"></i>
+                        Mobile Apps
+                    </div>
                     <div class="filter-btn" onclick="setFiletype('jpg|png|gif|bmp|tiff|psd', 'Images', 'picture', 'image')">
                         <i class="fas fa-image"></i>
                         Images
@@ -256,9 +260,7 @@
                     <label class="form-label">Search Engine:</label>
                     <div>
                         <button type="button" class="btn engine-btn active" onclick="setEngine('google')">Google</button>
-                        <button type="button" class="btn engine-btn" onclick="setEngine('googol')">Googol</button>
                         <button type="button" class="btn engine-btn" onclick="setEngine('startpage')">Startpage</button>
-                        <button type="button" class="btn engine-btn" onclick="setEngine('searx')">Searx</button>
                         <button type="button" class="btn engine-btn" onclick="setEngine('filepursuit')">FilePursuit</button>
                     </div>
                 </div>
@@ -321,6 +323,7 @@
                 'music': 'Search for music... e.g., Pink Floyd Dark Side of the Moon',
                 'book': 'Search for books... e.g., Harry Potter PDF',
                 'laptop': 'Search for software... e.g., Adobe Photoshop 2024',
+                'mobile': 'Search for mobile apps... e.g., Instagram APK',
                 'image': 'Search for images... e.g., Nature wallpapers 4K',
                 'asterisk': 'Search for anything... e.g., The Blacklist S01E01'
             };
@@ -355,7 +358,9 @@
             let url;
 
             if (engine === 'filepursuit') {
-                url = `https://filepursuit.com/search/${encodeURIComponent(query)}/type/${resType}`;
+                // Format query for FilePursuit with proper URL structure
+                const encodedQuery = encodeURIComponent(query.replace(/\s+/g, '+'));
+                url = `https://filepursuit.com/pursuit?q=${encodedQuery}&type=${resType}&sort=datedesc`;
             } else {
                 // Build search query for other engines
                 if (fileType && fileType !== '') {
@@ -368,14 +373,8 @@
                     case 'google':
                         url = `https://www.google.com/search?q=${encodeURIComponent(finalQuery)}`;
                         break;
-                    case 'googol':
-                        url = `https://googol.warriordudimanche.net/?q=${encodeURIComponent(finalQuery)}`;
-                        break;
                     case 'startpage':
                         url = `https://www.startpage.com/do/dsearch?query=${encodeURIComponent(finalQuery)}`;
-                        break;
-                    case 'searx':
-                        url = `https://searx.me/?q=${encodeURIComponent(finalQuery)}`;
                         break;
                 }
             }
