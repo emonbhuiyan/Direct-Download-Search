@@ -125,6 +125,6 @@ The project uses modern web standards and requires no build process. Simply edit
 
 ### License
 
-This project is open source and available under the **MIT License**.
+This project is open source and available under the **[MIT License](LICENSE)**.
 
 **Note:** This tool helps locate publicly accessible files on open web directories. Users are responsible for ensuring they comply with applicable laws and respect intellectual property rights when downloading content.
