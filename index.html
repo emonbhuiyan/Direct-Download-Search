@@ -1,210 +1,412 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Open Directory Finder 🔎</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="direct download, open directory, movies, games, music, software, ebooks, file search">
-	<meta name="description" content="Effortlessly find direct download links for almost anything using advanced search queries on public open directories.">
-
-	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<style type="text/css">
-		body {
-			background: linear-gradient(to right, #4a90e2, #7d5a9a);
-			color: #ffffff;
-			font-family: 'Lato', sans-serif;
-			padding-top: 50px;
-			min-height: 100vh;
-			display: flex;
-			flex-direction: column;
-		}
-		.container {
-			flex: 1;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			text-align: center;
-			max-width: 900px;
-		}
-		.main-heading {
-			font-size: 3rem;
-			font-weight: 700;
-			margin-bottom: 0.5rem;
-			text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-		}
-		.sub-heading {
-			font-size: 1.25rem;
-			font-weight: 300;
-			margin-bottom: 2rem;
-			text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-		}
-		.input-group {
-			width: 100%;
-			max-width: 700px;
-		}
-		.input-group .form-control {
-			border: none;
-			padding: 25px 20px;
-			font-size: 1.1rem;
-			border-radius: 5px;
-			background-color: rgba(255, 255, 255, 0.2);
-			color: #ffffff;
-			box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-			transition: background-color 0.3s ease;
-		}
-		.input-group .form-control::placeholder {
-			color: rgba(255, 255, 255, 0.7);
-		}
-		.input-group .form-control:focus {
-			background-color: rgba(255, 255, 255, 0.3);
-			outline: none;
-			box-shadow: 0 6px 10px rgba(0,0,0,0.15);
-		}
-		.input-group-btn .btn-default, .btn-search {
-			border: none;
-			padding: 25px 20px;
-			font-size: 1.1rem;
-			font-weight: 700;
-			color: #ffffff;
-			border-radius: 5px;
-			background-color: #38b2ac;
-			box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-			transition: background-color 0.3s ease, transform 0.2s ease;
-		}
-		.input-group-btn .btn-default {
-			background-color: rgba(255, 255, 255, 0.2);
-		}
-		.btn-search:hover, .btn-default:hover {
-			background-color: #31a4a1;
-			transform: translateY(-2px);
-		}
-		.dropdown-menu {
-			background-color: rgba(255, 255, 255, 0.9);
-			border: none;
-			box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-		}
-		.dropdown-menu li a {
-			color: #333;
-			font-weight: 400;
-			padding: 10px 20px;
-		}
-		.dropdown-menu li a:hover {
-			background-color: #d1e2f3;
-		}
-		.footer {
-			margin-top: auto;
-			padding: 20px 0;
-			font-size: 0.9rem;
-			color: rgba(255, 255, 255, 0.8);
-			text-align: center;
-		}
-		.footer a {
-			color: #ffffff;
-			text-decoration: underline;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct Download Search - Find Files Instantly</title>
+    <meta name="description" content="Search for direct download links across the web. Find movies, music, books, software, and more with our advanced search engine.">
+    <meta name="keywords" content="direct download,file search,movies,music,books,software,download links">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --danger-color: #e74c3c;
+            --dark-bg: #1a1a1a;
+            --light-text: #ecf0f1;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 900px;
+        }
+        
+        .logo-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .logo-title {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .logo-subtitle {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+        
+        .search-container {
+            position: relative;
+            margin: 2rem 0;
+        }
+        
+        .search-input {
+            border-radius: 50px;
+            border: 2px solid #e9ecef;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+            outline: none;
+        }
+        
+        .search-btn {
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--accent-color), #2980b9);
+            border: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+            background: linear-gradient(45deg, #2980b9, var(--accent-color));
+        }
+        
+        .filter-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            border-radius: 25px;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #e9ecef;
+            background: white;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            border-color: var(--accent-color);
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .engine-selector {
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        .engine-btn {
+            margin: 0 0.5rem;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            border: 1px solid #dee2e6;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .engine-btn.active {
+            background: var(--success-color);
+            border-color: var(--success-color);
+            color: white;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-title {
+                font-size: 2rem;
+            }
+            
+            .filter-section {
+                justify-content: center;
+            }
+            
+            .filter-btn {
+                flex: 1;
+                min-width: 120px;
+                justify-content: center;
+            }
+        }
+        
+        .alert-info {
+            border-radius: 15px;
+            border: none;
+            background: linear-gradient(45deg, #e3f2fd, #bbdefb);
+        }
+    </style>
 </head>
 
 <body>
-<div class="container">
-	<h1 class="main-heading">Open Directory Finder 🔎</h1>
-	<p class="sub-heading">Find direct download links for anything. Simple and effective. 🚀</p>
+    <div class="container">
+        <div class="main-container">
+            <!-- Header -->
+            <div class="logo-section">
+                <h1 class="logo-title">
+                    <i class="fas fa-download"></i>
+                    Direct Download Search
+                </h1>
+                <p class="logo-subtitle">Find direct download links for movies, music, books, software, and more</p>
+            </div>
 
-	<form id="searchForm" onsubmit="event.preventDefault(); startSearch();">
-		<input type="hidden" name="fileType" value="" id="fileType">
-		
-		<div class="input-group">
-			<div class="input-group-btn">
-				<button id="ddbutton" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<i class="fa fa-file-o"></i> Filetype <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-					<li><a href="#" onclick="setFiletype('mkv|mp4|avi|mov|mpg|wmv', 'Movies/TV', 'fa-film')"><i class="fa fa-film"></i> Movies/TV</a></li>
-					<li><a href="#" onclick="setFiletype('mp3|wav|flac|m4a|aac', 'Music', 'fa-music')"><i class="fa fa-music"></i> Music</a></li>
-					<li><a href="#" onclick="setFiletype('pdf|epub|mobi', 'Books', 'fa-book')"><i class="fa fa-book"></i> Books</a></li>
-					<li><a href="#" onclick="setFiletype('exe|iso|dmg|apk', 'Software/Games', 'fa-gamepad')"><i class="fa fa-gamepad"></i> Software/Games</a></li>
-					<li><a href="#" onclick="setFiletype('jpg|png|gif', 'Images', 'fa-picture-o')"><i class="fa fa-picture-o"></i> Images</a></li>
-					<li role="separator" class="divider"></li>
-					<li><a href="#" onclick="setFiletype('', 'All Files', 'fa-asterisk')"><i class="fa fa-asterisk"></i> All Files</a></li>
-				</ul>
-			</div>
-			
-			<input type="text" name="query" value="" id="query" class="form-control" placeholder="What are you looking for?">
-			
-			<span class="input-group-btn">
-				<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-			</span>
-		</div>
-	</form>
-</div>
+            <!-- Search Form -->
+            <form id="searchForm" onsubmit="event.preventDefault(); startSearch();">
+                <input type="hidden" id="fileType" value="">
+                <input type="hidden" id="resType" value="">
+                <input type="hidden" id="engine" value="google">
 
-<div class="footer">
-	<p>Powered by Google. Learn how it works <a href="https://www.google.com/search?q=inurl%3A(listen77%7Cmp3raid%7Cmp3toss%7Cmp3drug%7Cindex_of%7Cindex-of%7Cwallywashis%7Cdownloadmana)+-inurl%3A(jsp%7Cpl%7Cphp%7Chtml%7Caspx%7Chtm%7Ccf%7Cshtml)+intitle%3Aindex.of" target="_blank">here</a>.</p>
-</div>
+                <!-- Search Input -->
+                <div class="search-container">
+                    <div class="input-group">
+                        <input type="text" 
+                               id="query" 
+                               class="form-control search-input" 
+                               placeholder="Search for anything... e.g., The Blacklist S01E01"
+                               required>
+                        <button class="btn search-btn" type="submit">
+                            <i class="fas fa-search"></i>
+                            Search
+                        </button>
+                    </div>
+                </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<script>
-	var filetypeSuggestions = {
-		'Movies/TV': ['The.Blacklist.S01', 'Dune.2021', 'Joker.2019'],
-		'Music': ['K.Flay discography', 'Pink Floyd The Wall', 'Daft Punk Random Access Memories'],
-		'Books': ['1984 George Orwell pdf', 'The Lord of the Rings', 'Sapiens A Brief History of Humankind'],
-		'Software/Games': ['GTA V', 'Adobe Photoshop', 'Minecraft.apk'],
-		'Images': ['New York City skyline', 'Hubble telescope images', 'cat memes'],
-		'All Files': ['software full version', 'free download', 'hd wallpapers']
-	};
+                <!-- File Type Filters -->
+                <div class="filter-section">
+                    <div class="filter-btn active" onclick="setFiletype('', 'All Files', 'all', 'asterisk')">
+                        <i class="fas fa-asterisk"></i>
+                        All Files
+                    </div>
+                    <div class="filter-btn" onclick="setFiletype('mkv|mp4|avi|mov|mpg|wmv|divx|mpeg', 'Movies/TV', 'video', 'film')">
+                        <i class="fas fa-film"></i>
+                        Movies/TV
+                    </div>
+                    <div class="filter-btn" onclick="setFiletype('mp3|wav|ac3|ogg|flac|wma|m4a|aac', 'Music', 'audio', 'music')">
+                        <i class="fas fa-music"></i>
+                        Music
+                    </div>
+                    <div class="filter-btn" onclick="setFiletype('MOBI|CBZ|CBR|EPUB|PDF|DOC|DOCX', 'Books', 'ebook', 'book')">
+                        <i class="fas fa-book"></i>
+                        Books
+                    </div>
+                    <div class="filter-btn" onclick="setFiletype('exe|iso|dmg|tar|7z|rar|zip|apk', 'Software', 'archive', 'laptop')">
+                        <i class="fas fa-laptop"></i>
+                        Software
+                    </div>
+                    <div class="filter-btn" onclick="setFiletype('jpg|png|gif|bmp|tiff|psd', 'Images', 'picture', 'image')">
+                        <i class="fas fa-image"></i>
+                        Images
+                    </div>
+                </div>
 
-	function setFiletype(fileType, buttonData, glyph) {
-		$('#fileType').val(fileType);
-		$('#ddbutton').html('<i class="fa ' + glyph + '"></i> ' + buttonData + ' <span class="caret"></span>');
-		
-		var suggestions = filetypeSuggestions[buttonData];
-		$('#query').autocomplete({
-			source: suggestions,
-			minLength: 0,
-			open: function() {
-				var ac = $(this).data('ui-autocomplete');
-				if (ac && ac.menu) {
-					ac.menu.element.css('z-index', 9999);
-				}
-			}
-		}).focus(function() {
-			$(this).autocomplete("search");
-		});
+                <!-- Search Engine Selection -->
+                <div class="engine-selector">
+                    <label class="form-label">Search Engine:</label>
+                    <div>
+                        <button type="button" class="btn engine-btn active" onclick="setEngine('google')">Google</button>
+                        <button type="button" class="btn engine-btn" onclick="setEngine('googol')">Googol</button>
+                        <button type="button" class="btn engine-btn" onclick="setEngine('startpage')">Startpage</button>
+                        <button type="button" class="btn engine-btn" onclick="setEngine('searx')">Searx</button>
+                        <button type="button" class="btn engine-btn" onclick="setEngine('filepursuit')">FilePursuit</button>
+                    </div>
+                </div>
+            </form>
 
-		$('#query').attr('placeholder', 'e.g., ' + suggestions[0]);
-		$('#query').focus();
-	}
+            <!-- Info Alert -->
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i>
+                <strong>Tip:</strong> Use specific search terms for better results. Include file extensions, quality indicators, or release groups when searching for media.
+            </div>
 
-	function startSearch() {
-		var query = $('#query').val();
-		var fileType = $('#fileType').val();
+            <!-- Features -->
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h5>Lightning Fast</h5>
+                    <p>Get instant results from multiple search engines</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h5>Safe Search</h5>
+                    <p>Filtered results to avoid malicious websites</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h5>Multiple Engines</h5>
+                    <p>Search across different platforms for comprehensive results</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-		if (!query.trim()) {
-			alert("Please enter a search query. 🙄");
-			return;
-		}
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        let currentFileType = '';
+        let currentResType = 'all';
+        let currentEngine = 'google';
 
-		var finalQuery = query + ' -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) intitle:index.of -inurl:(listen77|mp3raid|mp3toss|mp3drug|index_of|index-of|wallywashis|downloadmana)';
-		
-		if (fileType) {
-			finalQuery = query + ' +(' + fileType + ') ' + finalQuery;
-		}
+        function setFiletype(fileType, buttonText, resType, icon) {
+            currentFileType = fileType;
+            currentResType = resType;
+            document.getElementById('fileType').value = fileType;
+            document.getElementById('resType').value = resType;
+            
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update placeholder
+            const placeholders = {
+                'film': 'Search for movies/TV... e.g., The Blacklist S01E01',
+                'music': 'Search for music... e.g., Pink Floyd Dark Side of the Moon',
+                'book': 'Search for books... e.g., Harry Potter PDF',
+                'laptop': 'Search for software... e.g., Adobe Photoshop 2024',
+                'image': 'Search for images... e.g., Nature wallpapers 4K',
+                'asterisk': 'Search for anything... e.g., The Blacklist S01E01'
+            };
+            
+            document.getElementById('query').placeholder = placeholders[icon] || placeholders['asterisk'];
+            document.getElementById('query').focus();
+        }
 
-		var url = 'https://www.google.com/search?q=' + encodeURIComponent(finalQuery);
-		window.open(url, '_blank');
-	}
+        function setEngine(engine) {
+            currentEngine = engine;
+            document.getElementById('engine').value = engine;
+            
+            // Update active engine button
+            document.querySelectorAll('.engine-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.getElementById('query').focus();
+        }
 
-	$(document).ready(function() {
-		setFiletype('', 'All Files', 'fa-asterisk');
-	});
-</script>
+        function startSearch() {
+            const query = document.getElementById('query').value.trim();
+            if (!query) {
+                alert('Please enter a search term');
+                return;
+            }
 
+            const fileType = document.getElementById('fileType').value;
+            const resType = document.getElementById('resType').value;
+            const engine = document.getElementById('engine').value;
+            
+            let finalQuery;
+            let url;
+
+            if (engine === 'filepursuit') {
+                url = `https://filepursuit.com/search/${encodeURIComponent(query)}/type/${resType}`;
+            } else {
+                // Build search query for other engines
+                if (fileType && fileType !== '') {
+                    finalQuery = `${query} +(${fileType}) -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) intitle:index.of -inurl:(listen77|mp3raid|mp3toss|mp3drug|index_of|index-of|wallywashis|downloadmana)`;
+                } else {
+                    finalQuery = `${query} -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) intitle:index.of -inurl:(listen77|mp3raid|mp3toss|mp3drug|index_of|index-of|wallywashis|downloadmana)`;
+                }
+
+                switch(engine) {
+                    case 'google':
+                        url = `https://www.google.com/search?q=${encodeURIComponent(finalQuery)}`;
+                        break;
+                    case 'googol':
+                        url = `https://googol.warriordudimanche.net/?q=${encodeURIComponent(finalQuery)}`;
+                        break;
+                    case 'startpage':
+                        url = `https://www.startpage.com/do/dsearch?query=${encodeURIComponent(finalQuery)}`;
+                        break;
+                    case 'searx':
+                        url = `https://searx.me/?q=${encodeURIComponent(finalQuery)}`;
+                        break;
+                }
+            }
+
+            // Open search results in new tab
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                startSearch();
+            }
+        });
+
+        // Auto-focus search input on page load
+        window.addEventListener('load', function() {
+            document.getElementById('query').focus();
+        });
+
+        // Add some interactive feedback
+        document.getElementById('query').addEventListener('input', function() {
+            const query = this.value.trim();
+            const searchBtn = document.querySelector('.search-btn');
+            
+            if (query.length > 2) {
+                searchBtn.style.background = 'linear-gradient(45deg, #27ae60, #2ecc71)';
+            } else {
+                searchBtn.style.background = 'linear-gradient(45deg, #3498db, #2980b9)';
+            }
+        });
+    </script>
 </body>
 </html>
